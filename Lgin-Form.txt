@@ -1,0 +1,277 @@
+#include<iostream>
+#include<istream>
+#include<fstream>
+#include<string.h>
+using namespace std;
+
+void login();
+void registration();
+void forget();
+void my();
+
+
+int main()
+{
+    cout<<"\n\n\n\t\t   Login Page Project \n";
+
+    int c;
+    cout<<" \n_______________________________________________________________________\n\n\n";
+
+    cout<<"\t\t   welcome to login page                 \n\n\n";
+
+    cout<<"\t_________________menu_____________________\n\n";
+    cout<<"\t| Press 1 for Login                      |"<<endl;
+     cout<<"\t| Press 2 for Registration               |"<<endl;
+      cout<<"\t| Press 3 if you forgot your passowrd    |"<<endl;
+       cout<<"\t| Press 4 to exit                        |"<<endl;
+    cout<<"\t\t\tEnter your choice :";
+    cin>>c;
+    
+
+   
+
+    switch(c){
+        case 1:
+        login();
+        break;
+
+        case 2:  
+             registration();
+             break;
+        
+        case 3:
+        forget();
+        break;
+
+        case 4:
+        cout<<"\t\t\t thank you \n\n";
+         break;
+
+        case 5:
+              my();
+              break;
+        
+
+        default:
+    
+        cout<<"\t\t\t Please select from the option given above ";
+        main();
+
+
+
+    }
+}
+
+    void login()
+    {
+     int exit;
+     string userid, password,u,p;
+     system("cls");
+     cout<<"\n\n\n\t\t\t enter the user name :";
+     cin>>userid;
+     cout<<"\n\t\t\t enter the password :";
+     cin>>password;
+     
+     ifstream input("record.txt");
+
+     while (input>>u>>p)
+     {
+        if(u== userid && p == password)
+        {
+            exit=1;
+
+        }
+
+     }
+     if(exit == 1)
+     {
+        cout<<"\n\n\n\t\t\t your login is sucessful \n\n\t\t\t thanks for login\n";
+     }
+     else{
+        cout<<"\n\n\n\t\t\t Login error \n\n\n\t\t\t please cheak username or passworsd\n";
+     }
+     main();
+
+
+
+
+ }
+
+ void registration()
+ {
+    string ruserid, rpassword ,rid,rpass;
+    system("cls");
+
+    cout<<"\n\n\n\t\t\t Enter the user name  :";
+    cin>>ruserid;
+    
+    cout<<"\n\n\t\t\t Enter the password  :";
+    cin>>rpassword;
+
+    ofstream f1("record.txt", ios:: app);
+    f1<<ruserid<<' '<<rpassword<<endl;
+    system("cls");
+
+    cout<<"\n\n\n\t\t   Registration sucessful\n";
+    cout<<"\n\n\n";
+    main();
+
+ }
+
+
+   void forget()
+{
+  int ch;
+ 
+   cout<<"\n_______________________________________________________________________\n\n\n";
+  cout<<"\t\tyou dont know your passwrd or username dont worry\n\n";            
+  cout<<"\t\t\t enter 1 for search your accunt by Username:\n\n";                
+  cout<<"\t\t\t enter 2 for search your accunt by Password:\n\n";                
+  cout<<"\t\t\t enter 3 for main menu\n\n";                                      
+  cout<<"\t\t\t enter your choice :";                                            
+  cin>>ch;                                                                       
+  cout<<"\n_______________________________________________________________________\n";
+  
+
+
+
+
+  switch(ch)
+  {
+    case 1:
+    {
+    int ex=0;
+    string searchuser,su,sp;
+    cout<<"\n\n\t\t\t Enter your  remembered username :";
+    cin>>searchuser;
+    cout<<"\n\n\n";
+    
+   
+
+    
+
+
+    ifstream searchu("record.txt");
+    while(searchu>>su>>sp)
+    {
+      if(su==searchuser)
+      {
+        ex=1;
+        break;
+
+      }
+    }
+    searchu.close();
+    if(ex==1)
+    {
+        cout<<"\n\n\t\t\t your account is found\n";
+        cout<<"\n\n\t\t\t your password is: "<<sp<<endl;
+         cout<<"\n\t\t\t please press enter key for main menu\n\n";
+        cin.get();
+        cin.get();
+        
+        main();
+        cout<<"\n\n\n\n";
+    }
+    else{
+        cout<<"\n\n\t\t\t sorry your account is not found\n";
+         cout<<"\n\t\t\t You enter wrong Username\n";
+         cout<<"\n\t\t\t please press enter key for main menu\n\n";
+         cin.get();
+         cin.get();
+        
+        main();
+        cout<<"\n\n\n\n\n\n\n\n\n\n\n\n";
+
+    }
+    }
+    break;
+
+        case 2:
+        {
+        int exi = 0;
+        string searchpass,su2,sp2;
+        cout<<"\n\n\t\t\t enter the remembred password:";
+        cin>>searchpass;
+       
+       
+
+
+        ifstream searchp("record.txt");
+        while(searchp>>su2>>sp2)
+        {
+            if(sp2 == searchpass)
+            {
+                exi=1;
+                break;
+
+            }
+        }
+        searchp.close();
+        if(exi == 1)
+        {
+            cout<<"\n\n\t\t\t your account is found\n\n";
+            cout<<"\n\t\t\t your Username is :"<<su2;
+            cout<<"\n\n\n";
+           
+             cout<<"\n\t\t\t please press enter key for main menu\n\n";
+          
+            cin.get();
+            cin.get();
+           
+            main();
+           
+        }
+    
+        else
+        
+        {   
+            cout<<"\n\n\t\t\t your account is not found\n";
+             cout<<"\n\t\t\t You enter wrong password\n";
+            cout<<"\n\t\t\t please press enter key for main menu\n\n";
+           
+            
+          
+        }
+        main();
+        
+        } 
+        break;
+        case 3:
+        {
+        main();
+        cout<<"\n\n\n\n\n\n\n\n\n\n\n\n";
+        }
+
+    
+        break;
+       
+
+
+
+        default :
+        {
+
+        cout<<"\n You have given wrong choice\n\n";
+        
+        }
+        break;
+
+
+  }
+
+  
+}
+
+void my()
+  {
+    cout<<"\n\n\n\n\n\n\n\n\n\n\t\t\t ruko jara sabar karo !!!!!!!\n\n\n";
+
+    cout<<"\t\t\t Please press like button for my motivation\n\n\n";
+
+    cout<<"\t\t\t Thank you \n\n\n";
+
+    cout<<"____________________________________________________________________";
+    
+    cout<<"\n\n\n\n\n\n\n\n";
+  }
